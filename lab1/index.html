@@ -4,16 +4,19 @@
   <title>Enterprise App Dev Lab 1</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Themify -->
+	<link rel="stylesheet" href="plugins/themify/css/themify-icons.css">
 </head>
   <body>
     <header class="navbar navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand" href="#">Home</a>
-        <a class="navbar-brand" href="#">About</a>
-        <a class="navbar-brand" href="#">Contact</a>
+        <a class="navbar-brand" href="about.html">About</a>
+        <a class="navbar-brand" href="contact.html">Contact</a>
         <a class="navbar-brand" href="#">Events</a>
       </div>
     </header>
@@ -29,7 +32,7 @@
       </div>
     </div>
 
-    <section class="section-padding pt-4">
+    <section class="pt-4">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -150,24 +153,121 @@
             </article>
           </div>
 
+          <!-- Sidebar -->
           <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <div class="sidebar sidebar-right">
               <div class="sidebar-wrap mt-5 mt-lg-0">
+
+                <!-- Author -->
                 <div class="sidebar-widget about mb-5 text-center p-3">
                   <div class="about-author">
-                    <img src="images/surf-1.jpg" alt="" class="img-fluid img-thumbnail">
+                    <img src="images/surf-logo.jpeg" alt="" class="img-fluid">
                   </div>
                   <h4 class="mb-0 mt-4">Bryan McCarthy</h4>
-                  <p>Surf Enjoyer</p>
-                  <p>I'm Liam, last year I decided to quit my job and travel the world. You can follow my journey on this
-                    blog!</p>
+                  <p>Surfer</p>
+                  <p>Lorem Ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cupiditate delectus qui modi minus iste, deserunt amet sunt, ullam possimus at est non rerum optio distinctio! Provident voluptatibus laudantium aliquam.</p>
                   <img src="images/surf-1.jpg" alt="" class="img-fluid">
                 </div>
+  
+                <!-- Socials -->
+                <div class="sidebar-widget follow mb-5 text-center">
+                  <h4 class="text-center widget-title">Follow Me</h4>
+                  <div class="follow-socials">
+                    <a href="#"><i class="ti-facebook"></i></a>
+                    <a href="#"><i class="ti-twitter"></i></a>
+                    <a href="#"><i class="ti-instagram"></i></a>
+                    <a href="#"><i class="ti-youtube"></i></a>
+                  </div>
+                </div>
+  
+                <!-- Posts -->
+                <div class="sidebar-widget mb-5 ">
+                  <h4 class="text-center widget-title">Trending Posts</h4>
+                  <div class="sidebar-post-item-big">
+                    <a href="#"><img src="images/surf-1.jpg" alt="" class="img-fluid"></a>
+                    <div class="mt-3 media-body">
+                      <span class="text-muted letter-spacing text-uppercase font-sm">September 10, 2019</span>
+                      <h4><a href="#">Meeting With Clarissa, Founder Of Purple Conversation App</a></h4>
+                    </div>
+                  </div>
+  
+                  <div class="media border-bottom py-3 sidebar-post-item">
+                    <a href="#"><img class="mr-4" src="images/surf-logo.jpeg" alt=""></a>
+                    <div class="media-body">
+                      <span class="text-muted letter-spacing text-uppercase font-sm">September 10, 2019</span>
+                      <h4><a href="#">Thoughtful living in los Angeles</a></h4>
+                    </div>
+                  </div>
+  
+                  <div class="media py-3 sidebar-post-item">
+                    <a href="#"><img class="mr-4" src="images/surf-logo.jpeg" alt=""></a>
+                    <div class="media-body">
+                      <span class="text-muted letter-spacing text-uppercase font-sm">September 10, 2019</span>
+                      <h4><a href="#">Vivamus molestie gravida turpis.</a></h4>
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- Categories -->
+                <div class="sidebar-widget category mb-5">
+                  <h4 class="text-center widget-title">Categories</h4>
+                  <ul class="list-unstyled">
+                    <li class="align-items-center d-flex justify-content-between">
+                      <a href="#">Wakeboard</a>
+                      <span>14</span>
+                    </li>
+                    <li class="align-items-center d-flex justify-content-between">
+                      <a href="#">Kitesurfing</a>
+                      <span>2</span>
+                    </li>
+                    <li class="align-items-center d-flex justify-content-between">
+                      <a href="#">Windsurfing</a>
+                      <span>10</span>
+                    </li>
+                    <li class="align-items-center d-flex justify-content-between">
+                      <a href="#">Skimboard</a>
+                      <span>5</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <!-- Newsletter -->
+                <div class="sidebar-widget subscribe mb-5">
+                  <h4 class="text-center widget-title">Newsletter</h4>
+                  <input type="text" class="form-control" placeholder="Email Address">
+                  <a href="#" class="btn btn-primary d-block mt-3">Sign Up</a>
+                </div>
+  
+                <div class="sidebar-widget sidebar-adv mb-5">
+                  <a href="#"><img src="images/surf-logo.jpeg" alt="" class="img-fluid w-100"></a>
+                </div>
+  
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+      <!-- footer -->
+    <footer class="footer-section bg-grey">
+        <div class="container">
+          <div class="row">
+              <div class="col-lg-12 text-center">
+                  <ul class="list-inline footer-socials">
+                      <li class="list-inline-item"><a href="#"><i class="ti-facebook mr-2"></i>Facebook</a></li>
+                      <li class="list-inline-item"><a href="#"><i class="ti-twitter mr-2"></i>Twitter</a></li>
+                      <li class="list-inline-item"><a href="#"><i class="ti-linkedin mr-2"></i>Linkedin</a></li>
+                      <li class="list-inline-item"><a href="#"><i class="ti-pinterest mr-2"></i>Pinterest</a></li>
+                      <li class="list-inline-item"><a href="#"><i class="ti-github mr-2"></i>Github</a></li>
+                      <li class="list-inline-item"><a href="#"><i class="ti-instagram mr-2"></i>Instrgram</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
