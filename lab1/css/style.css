@@ -302,6 +302,10 @@ blockquote {
   display: none;
 }
 
+.navbar {
+  background: #000;
+}
+
 .navbar-nav .nav-link {
   transition: all 500ms ease;
   -moz-transition: all 500ms ease;
