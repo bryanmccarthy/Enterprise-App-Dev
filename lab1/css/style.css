@@ -511,43 +511,9 @@ overlay search
   }
 }
 
-@media (max-width: 768px) {
-
-  .overlay nav,
-  .overlay .search-blog-post {
-    top: 50%;
-  }
-
-  .toggle-wrap.active {
-    top: 7%;
-  }
-}
-
-@media (max-width: 767px) {
-
-  .overlay nav,
-  .overlay .search-blog-post,
-  .search-blog-title {
-    display: none;
-  }
-
-  .overlay .search-form {
-    height: 100%;
-    padding-top: 50%;
-  }
-
-  .toggle-wrap.active {
-    top: 15%;
-    right: -10px;
-  }
-
-  .overlay .search-form input {
-    font-size: 24px;
-  }
-
-  .toggle-wrap.active img.search-close {
-    width: 70%;
-  }
+iframe {
+  width: 100%;
+  height: 300px;
 }
 
 .sidebar {
