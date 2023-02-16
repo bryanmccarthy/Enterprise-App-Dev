@@ -297,7 +297,8 @@ iframe {
 }
 
 .sidebar-post-item img {
-  width: 100px;
+  width: 240px;
+  height: 160px;
 }
 
 .post-meta li {
