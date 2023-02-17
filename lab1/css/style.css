@@ -292,15 +292,6 @@ iframe {
   margin-bottom: 5px;
 }
 
-.sidebar-post-item span {
-  font-size: 12px;
-}
-
-.sidebar-post-item img {
-  width: 240px;
-  height: 160px;
-}
-
 .post-meta li {
   text-transform: uppercase;
   font-size: 12px;
