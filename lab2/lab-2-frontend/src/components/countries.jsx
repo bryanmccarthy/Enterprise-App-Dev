@@ -6,6 +6,7 @@ const URL = 'http://localhost:3001'
 
 function Countries() {
   const [countriesData, setCountriesData] = useState([]);
+  const [showTable, setShowTable] = useState(false);
 
   async function getCountriesData() {
     const capital = await axios.get(URL + '/country-objects/country-by-capital-city.json');
@@ -15,30 +16,73 @@ function Countries() {
     const domain = await axios.get(URL + '/country-objects/country-by-domain-tld.json');
     const flag = await axios.get(URL + '/country-objects/country-by-flag.json');
     
-    const mergedData = mergeData(capital.data, continent.data, costline.data, currency_name.data, domain.data, flag.data);
-    console.log(mergedData);
-  }
-
-  // Merge every country array
-  function mergeData(capital, continent, costline, currency_name, domain, flag) {
-    const merged = {};
-
-    // Iterates over each array and their objects and adds them to merged using country as key
-    [capital, continent, costline, currency_name, domain, flag].forEach((array) => {
-      array.forEach((obj) => {
-        const country = obj.country;
-        // If the country doesn't exist in merged yet, add it
-        if (!merged[country]) merged[country] = [];
-        merged[country].push(obj);
-      })
-    });
+    setShowTable(true); 
+    const groupedByCountry = new Map();
     
-    return(Object.values(merged)); // Return the object as an array
+    capital.data.forEach(({ country, city }) => {
+      if (!groupedByCountry.has(country)) {
+        groupedByCountry.set(country, [country, city]);
+      }
+    });
+    continent.data.forEach(({ country, continent }) => {
+      if (groupedByCountry.has(country)) {
+        groupedByCountry.get(country).push(continent);
+      }
+    });
+    currency_name.data.forEach(({ country, currency_name }) => {
+      if (groupedByCountry.has(country)) {
+        groupedByCountry.get(country).push(currency_name);
+      }
+    });
+    costline.data.forEach(({ country, costline }) => {
+      if (groupedByCountry.has(country)) {
+        groupedByCountry.get(country).push(costline);
+      }
+    });
+    domain.data.forEach(({ country, tld }) => {
+      if (groupedByCountry.has(country)) {
+        groupedByCountry.get(country).push(tld);
+      }
+    });
+    // flag.data.forEach(({ country, flag_base64 }) => {
+    //   if (groupedByCountry.has(country)) {
+    //     groupedByCountry.get(country).push(flag_base64);
+    //   }
+    // });
+    
+    console.log(Array.from(groupedByCountry.values()))
+    setCountriesData(Array.from(groupedByCountry.values()));
   }
 
   return (
     <div className="Countries">
-        <button onClick={getCountriesData}>View Country Information</button>
+        { showTable ?
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Country</th>
+                  <th>City</th>
+                  <th>Continent</th>
+                  <th>Currency</th>
+                  <th>Costline</th>
+                  <th>Domain</th>
+                </tr>
+              </thead>
+              <tbody>
+                {countriesData.map((arr) => (
+                  <tr key={arr[0]}>
+                    {arr.map((value) => (
+                      <td>{value}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          :
+          <button onClick={getCountriesData}>View Country Information</button>
+        }
     </div>
   )
 }
