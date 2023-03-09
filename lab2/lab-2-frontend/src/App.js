@@ -1,51 +1,31 @@
 import './App.css';
+import Technologies from './components/technologies';
 import axios from 'axios';
 
 function App() {
 
-  async function getCountriesByCapital() {
-    const res = await axios.get('http://localhost:3001/country-objects/country-by-capital-city.json');
-    console.log(res.data);
-  }
-
-  async function getCountriesByContinent() {
-    const res = await axios.get('http://localhost:3001/country-objects/country-by-continent.json');
-    console.log(res.data);
-  }
-
-  async function getCountriesByCostline() {
-    const res = await axios.get('http://localhost:3001/country-objects/country-by-costline.json');
-    console.log(res.data);
-  }
-
-  async function getCountriesByCurrencyName() {
-    const res = await axios.get('http://localhost:3001/country-objects/country-by-currency-name.json');
-    console.log(res.data);
-  }
-  
-  async function getCountriesByCurrencyName() {
-    const res = await axios.get('http://localhost:3001/country-objects/country-by-currency-name.json');
-    console.log(res.data);
-  }
-
-  async function getCountriesByDomainTld() {
-    const res = await axios.get('http://localhost:3001/country-objects/country-by-domain-tld.json');
-    console.log(res.data);
-  }
-
-  async function getCountriesByFlag() {
-    const res = await axios.get('http://localhost:3001/country-objects/country-by-flag.json');
-    console.log(res.data);
+  async function getCountriesData() {
+    const capital = await axios.get('http://localhost:3001/country-objects/country-by-capital-city.json');
+    const continent = await axios.get('http://localhost:3001/country-objects/country-by-continent.json');
+    const costline = await axios.get('http://localhost:3001/country-objects/country-by-costline.json');
+    const currency = await axios.get('http://localhost:3001/country-objects/country-by-currency-name.json');
+    const domain = await axios.get('http://localhost:3001/country-objects/country-by-domain-tld.json');
+    const flag = await axios.get('http://localhost:3001/country-objects/country-by-flag.json');
+    console.log(capital.data);
+    console.log(continent.data);
+    console.log(costline.data);
+    console.log(currency.data);
+    console.log(domain.data);
+    console.log(flag.data);
   }
 
   return (
     <div className="App">
-        <button onClick={getCountriesByCapital}>Get countries by capital</button>
-        <button onClick={getCountriesByContinent}>Get countries by continent</button>
-        <button onClick={getCountriesByCostline}>Get countries by costline</button>
-        <button onClick={getCountriesByCurrencyName}>Get countries by currency name</button>
-        <button onClick={getCountriesByDomainTld}>Get countries by domain tld</button>
-        <button onClick={getCountriesByFlag}>Get countries by flag</button>
+      <div className="Container">
+        <Technologies />
+
+        <button onClick={getCountriesData}>View Country Information</button>
+      </div>
     </div>
   );
 }
