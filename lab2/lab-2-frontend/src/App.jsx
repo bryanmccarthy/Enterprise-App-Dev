@@ -1,13 +1,14 @@
 import './App.css';
-import Technologies from './components/technologies';
-import Countries from './components/countries';
+import Header from './components/Header';
+import Technologies from './components/Technologies';
+import Countries from './components/Countries';
 
 function App() {
 
   return (
     <div className="App">
       <div className="Container">
-        <div className="Header">Country Data</div>
+        <Header />
         <Technologies />
         <Countries />
       </div>

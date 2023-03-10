@@ -1,4 +1,4 @@
-import './countries.css';
+import './Countries.css';
 import { useState } from 'react';
 import axios from 'axios';
 

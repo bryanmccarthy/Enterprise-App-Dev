@@ -1,19 +1,19 @@
-import './technologies.css';
+import './Technologies.css';
 
 function Technologies() {
 
   return (
     <div className="Technologies">
       <div className="Tech-Item">
-        <h2 className="Title">React</h2>
+        <h2 className="Tech-Title">React</h2>
         <p className="Description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum placerat ullamcorper. Proin luctus, mauris ut suscipit consequat, ante erat lacinia orci, ut varius est diam nec nisi. Curabitur convallis placerat est in volutpat. Nulla arcu enim, dignissim id erat a, lacinia vulputate diam. Praesent efficitur neque at leo feugiat gravida. Proin at vestibulum sem. Suspendisse vitae diam sit amet velit commodo faucibus eu tristique justo.</p>
       </div>
       <div className="Tech-Item">
-        <h2 className="Title">Node</h2>
+        <h2 className="Tech-Title">Node</h2>
         <p className="Description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum placerat ullamcorper. Proin luctus, mauris ut suscipit consequat, ante erat lacinia orci, ut varius est diam nec nisi. Curabitur convallis placerat est in volutpat. Nulla arcu enim, dignissim id erat a, lacinia vulputate diam. Praesent efficitur neque at leo feugiat gravida. Proin at vestibulum sem. Suspendisse vitae diam sit amet velit commodo faucibus eu tristique justo.</p>
       </div>
       <div className="Tech-Item">
-        <h2 className="Title">Axios</h2>
+        <h2 className="Tech-Title">Axios</h2>
         <p className="Description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum placerat ullamcorper. Proin luctus, mauris ut suscipit consequat, ante erat lacinia orci, ut varius est diam nec nisi. Curabitur convallis placerat est in volutpat. Nulla arcu enim, dignissim id erat a, lacinia vulputate diam. Praesent efficitur neque at leo feugiat gravida. Proin at vestibulum sem. Suspendisse vitae diam sit amet velit commodo faucibus eu tristique justo.</p>
       </div>
     </div>
