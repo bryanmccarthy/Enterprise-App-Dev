@@ -13,7 +13,7 @@
 
 .GetCountriesButton:hover {
   color: #ffffff;
-  background-color: #1c417b;
+  background-color: #5c6696;
 }
 
 .TableContainer {
@@ -33,7 +33,7 @@
 .th {
   border: 1px solid #ccc;
   padding: 1.2em;
-  background-color: #1c417b;
+  background-color: #5c6696;
   color: white;
 }
 
@@ -47,12 +47,12 @@
 
 .td:hover {
   color: #ffffff;
-  background-color: #1c417b;
+  background-color: #5c6696;
 }
 
 .focusedCell {
   color: #ffffff;
-  background-color: #1c417b;
+  background-color: #5c6696;
 }
 
 .Flag {
@@ -71,4 +71,5 @@
   background-color: #ffffff;
   padding: 1em;
   border-radius: 0.5em;
+  cursor: pointer;
 }

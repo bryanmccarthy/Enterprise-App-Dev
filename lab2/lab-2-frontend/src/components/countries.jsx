@@ -109,7 +109,7 @@ function Countries() {
             <div className="PaginationControl">
               <button className="PageButton" disabled={ currentPage === firstPage ? true : false } onClick={() => setCurrentPage(currentPage - 1)}>prev</button>
               <button className="PageButton" onClick={handleToggleRows}>{ rowsPerPage === 20 ? 'View all' : 'View 20' } rows</button>
-              <button className="PageButton" disabled={ currentPage === lastPage ? true : false } onClick={() => setCurrentPage(currentPage + 1)}>next</button>
+              <button className="PageButton" disabled={ currentPage === lastPage || rowsPerPage !== 20 ? true : false } onClick={() => setCurrentPage(currentPage + 1)}>next</button>
             </div>
           </div>
           :
