@@ -11,6 +11,7 @@ function Countries() {
   const [showTable, setShowTable] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
+  const [focusedCell, setFocusedCell] = useState(null); // The current cell clicked
 
   async function getCountriesData() {
     const capital = await axios.get(URL + '/country-objects/country-by-capital-city.json');
@@ -66,40 +67,53 @@ function Countries() {
     }
   }
 
+  function handleCellClick(cell) {
+    if (focusedCell) { // Initially null
+      focusedCell.classList.remove("focusedCell");
+      setFocusedCell(cell);
+      cell.classList.add("focusedCell");
+    } else {
+      setFocusedCell(cell);
+      cell.classList.add("focusedCell")
+    }
+  }
+
   return (
     <div className="Countries">
         { showTable ?
           <div>
-            <table className="table">
-              <thead className="thead">
-                <tr className="tr">
-                  <th className="th">Country</th>
-                  <th className="th">City</th>
-                  <th className="th">Continent</th>
-                  <th className="th">Currency</th>
-                  <th className="th">Coastline</th>
-                  <th className="th">Domain</th>
-                  <th className="th">Flag</th>
-                </tr>
-              </thead>
-              <tbody className="tbody">
-                {countriesData.slice(rowsPerPage * (currentPage - 1), rowsPerPage * currentPage).map((arr) => (
-                  <tr className="tr" key={arr[0]}>
-                    {arr.map((value, i) => (
-                      <td className="td" key={i}>{ i === 6 ? <img className="Flag" src={value} alt="no flag"></img> : value }</td>
-                    ))}
+            <div className="TableContainer">
+              <table className="table">
+                <thead className="thead">
+                  <tr className="tr">
+                    <th className="th">Country</th>
+                    <th className="th">City</th>
+                    <th className="th">Continent</th>
+                    <th className="th">Currency</th>
+                    <th className="th">Coastline</th>
+                    <th className="th">Domain</th>
+                    <th className="th">Flag</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="tbody">
+                  {countriesData.slice(rowsPerPage * (currentPage - 1), rowsPerPage * currentPage).map((arr) => (
+                    <tr className="tr" key={arr[0]}>
+                      {arr.map((value, i) => (
+                        <td className="td" key={i} onClick={(e) => handleCellClick(e.target) }>{ i === 6 ? <img className="Flag" src={value} alt="no flag"></img> : value }</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
             <div className="PaginationControl">
-              <button style={{ visibility: currentPage === firstPage ? 'hidden' : 'visible'}} onClick={() => setCurrentPage(currentPage - 1)}>left</button>
-              <button onClick={handleToggleRows}>Toggle Rows Per Page</button>
-              <button style={{ visibility: currentPage === lastPage ? 'hidden' : 'visible'}} onClick={() => setCurrentPage(currentPage + 1)}>right</button>
+              <button className="PageButton" disabled={ currentPage === firstPage ? true : false } onClick={() => setCurrentPage(currentPage - 1)}>prev</button>
+              <button className="PageButton" onClick={handleToggleRows}>{ rowsPerPage === 20 ? 'View all' : 'View 20' } rows</button>
+              <button className="PageButton" disabled={ currentPage === lastPage ? true : false } onClick={() => setCurrentPage(currentPage + 1)}>next</button>
             </div>
           </div>
           :
-          <button className="GetCountriesButton" onClick={getCountriesData}>View Country Information</button>
+          <button className="GetCountriesButton" onClick={getCountriesData}>Load Country Information</button>
         }
     </div>
   )

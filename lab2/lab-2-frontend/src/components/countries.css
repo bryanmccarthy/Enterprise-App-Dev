@@ -1,5 +1,23 @@
 .Countries {
   padding: 0.5em;
+  text-align: center;
+}
+
+.GetCountriesButton {
+  border: 1px solid #000000;
+  background-color: #e5ecf3;
+  padding: 1em;
+  border-radius: 0.5em;
+  cursor: pointer;
+}
+
+.GetCountriesButton:hover {
+  color: #ffffff;
+  background-color: #1c417b;
+}
+
+.TableContainer {
+  overflow: auto;
 }
 
 .table {
@@ -15,16 +33,42 @@
 .th {
   border: 1px solid #ccc;
   padding: 1.2em;
-  background-color: rgb(0, 66, 117);
+  background-color: #1c417b;
   color: white;
 }
 
 .td {
   border: 1px solid #ccc;
-  padding: 0.5em;
+  height: 5em;
+  width: 10em;
+  text-align: center;
+  cursor: pointer;
+}
+
+.td:hover {
+  color: #ffffff;
+  background-color: #1c417b;
+}
+
+.focusedCell {
+  color: #ffffff;
+  background-color: #1c417b;
 }
 
 .Flag {
   height: 2em;
   width: 5em;
+}
+
+.PaginationControl {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+.PageButton {
+  border: 1px solid #000000;
+  background-color: #ffffff;
+  padding: 1em;
+  border-radius: 0.5em;
 }
