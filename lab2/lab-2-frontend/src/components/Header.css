@@ -36,3 +36,44 @@
   height: 4em;
   cursor: pointer;
 }
+
+.Duck-Container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Duck-Img {
+  height: 550px;
+  width: 600px;
+  border-radius: 2em;
+}
+
+@media (max-width: 800px) {
+  .Duck-Img {
+    height: 400px;
+    width: 450px;
+  }
+}
+
+/* Control elements classes */
+.ChangeP {
+  color: #f1620f;
+  font-weight: 600;
+}
+
+.ChangeH {
+  text-decoration: underline;
+  font-style: italic;
+}
+
+.ChangeTr {
+  font-weight: 600;
+  color: #8ee600;
+  background-color: #85a384;
+}
+
+.ChangeTable {
+  visibility: hidden;
+}
