@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const URL = 'http://localhost:3001';
 const firstPage = 1;
-const lastPage = 13;
+const lastPage = 13; // (constant value) -- List of rows / 20
 
 function Countries() {
   const [countriesData, setCountriesData] = useState([]);
@@ -13,6 +13,7 @@ function Countries() {
   const [currentPage, setCurrentPage] = useState(1);
   const [focusedCell, setFocusedCell] = useState(null); // The current cell clicked
 
+  // Requests for JSON files
   async function getCountriesData() {
     const capital = await axios.get(URL + '/country-objects/country-by-capital-city.json');
     const continent = await axios.get(URL + '/country-objects/country-by-continent.json');
@@ -24,9 +25,10 @@ function Countries() {
     setShowTable(true); 
     const groupedByCountry = new Map();
     
+    // Merge the files
     capital.data.forEach(({ country, city }) => {
       if (!groupedByCountry.has(country)) {
-        groupedByCountry.set(country, [country, city]);
+        groupedByCountry.set(country, [country, city]); // Begin by setting country as the key in groupedByCountry object
       }
     });
     continent.data.forEach(({ country, continent }) => {
@@ -55,13 +57,13 @@ function Countries() {
       }
     });
     
-    setCountriesData(Array.from(groupedByCountry.values()));
+    setCountriesData(Array.from(groupedByCountry.values())); // Change object to array when setting the value
   }
 
   function handleToggleRows() {
     if (rowsPerPage === 20) {
-      setCurrentPage(1);
-      setRowsPerPage(Infinity);
+      setCurrentPage(1); // Need to set to one since only one page will exist when displaying all rows 
+      setRowsPerPage(Infinity); // All rows will be on the first page
     } else {
       setRowsPerPage(20);
     }

@@ -45,7 +45,7 @@ function Header() {
 
   return (
     <div className="Header">
-      <h2 className="Title">Country Information</h2>
+      <h2 className="Title">C19749651 Lab 2</h2>
       <button className="Toggle-Show-Control" onClick={() => setShowControlButtons(!showControlButtons)}>
         { showControlButtons ? 'Hide' : 'Control' }
       </button>
