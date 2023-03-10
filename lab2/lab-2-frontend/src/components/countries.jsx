@@ -2,11 +2,15 @@ import './countries.css';
 import { useState } from 'react';
 import axios from 'axios';
 
-const URL = 'http://localhost:3001'
+const URL = 'http://localhost:3001';
+const firstPage = 1;
+const lastPage = 13;
 
 function Countries() {
   const [countriesData, setCountriesData] = useState([]);
   const [showTable, setShowTable] = useState(false);
+  const [rowsPerPage, setRowsPerPage] = useState(20);
+  const [currentPage, setCurrentPage] = useState(1);
 
   async function getCountriesData() {
     const capital = await axios.get(URL + '/country-objects/country-by-capital-city.json');
@@ -53,6 +57,15 @@ function Countries() {
     setCountriesData(Array.from(groupedByCountry.values()));
   }
 
+  function handleToggleRows() {
+    if (rowsPerPage === 20) {
+      setCurrentPage(1);
+      setRowsPerPage(Infinity);
+    } else {
+      setRowsPerPage(20);
+    }
+  }
+
   return (
     <div className="Countries">
         { showTable ?
@@ -64,13 +77,13 @@ function Countries() {
                   <th className="th">City</th>
                   <th className="th">Continent</th>
                   <th className="th">Currency</th>
-                  <th className="th">Costline</th>
+                  <th className="th">Coastline</th>
                   <th className="th">Domain</th>
                   <th className="th">Flag</th>
                 </tr>
               </thead>
               <tbody className="tbody">
-                {countriesData.map((arr) => (
+                {countriesData.slice(rowsPerPage * (currentPage - 1), rowsPerPage * currentPage).map((arr) => (
                   <tr className="tr" key={arr[0]}>
                     {arr.map((value, i) => (
                       <td className="td" key={i}>{ i === 6 ? <img className="Flag" src={value} alt="no flag"></img> : value }</td>
@@ -79,6 +92,11 @@ function Countries() {
                 ))}
               </tbody>
             </table>
+            <div className="PaginationControl">
+              <button style={{ visibility: currentPage === firstPage ? 'hidden' : 'visible'}} onClick={() => setCurrentPage(currentPage - 1)}>left</button>
+              <button onClick={handleToggleRows}>Toggle Rows Per Page</button>
+              <button style={{ visibility: currentPage === lastPage ? 'hidden' : 'visible'}} onClick={() => setCurrentPage(currentPage + 1)}>right</button>
+            </div>
           </div>
           :
           <button className="GetCountriesButton" onClick={getCountriesData}>View Country Information</button>
