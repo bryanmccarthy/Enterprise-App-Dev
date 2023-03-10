@@ -44,13 +44,12 @@ function Countries() {
         groupedByCountry.get(country).push(tld);
       }
     });
-    // flag.data.forEach(({ country, flag_base64 }) => {
-    //   if (groupedByCountry.has(country)) {
-    //     groupedByCountry.get(country).push(flag_base64);
-    //   }
-    // });
+    flag.data.forEach(({ country, flag_base64 }) => {
+      if (groupedByCountry.has(country)) {
+        groupedByCountry.get(country).push(flag_base64);
+      }
+    });
     
-    console.log(Array.from(groupedByCountry.values()))
     setCountriesData(Array.from(groupedByCountry.values()));
   }
 
@@ -58,22 +57,23 @@ function Countries() {
     <div className="Countries">
         { showTable ?
           <div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Country</th>
-                  <th>City</th>
-                  <th>Continent</th>
-                  <th>Currency</th>
-                  <th>Costline</th>
-                  <th>Domain</th>
+            <table className="table">
+              <thead className="thead">
+                <tr className="tr">
+                  <th className="th">Country</th>
+                  <th className="th">City</th>
+                  <th className="th">Continent</th>
+                  <th className="th">Currency</th>
+                  <th className="th">Costline</th>
+                  <th className="th">Domain</th>
+                  <th className="th">Flag</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="tbody">
                 {countriesData.map((arr) => (
-                  <tr key={arr[0]}>
-                    {arr.map((value) => (
-                      <td>{value}</td>
+                  <tr className="tr" key={arr[0]}>
+                    {arr.map((value, i) => (
+                      <td className="td" key={i}>{ i === 6 ? <img className="Flag" src={value} alt="no flag"></img> : value }</td>
                     ))}
                   </tr>
                 ))}
@@ -81,7 +81,7 @@ function Countries() {
             </table>
           </div>
           :
-          <button onClick={getCountriesData}>View Country Information</button>
+          <button className="GetCountriesButton" onClick={getCountriesData}>View Country Information</button>
         }
     </div>
   )
