@@ -63,7 +63,7 @@ function Header() {
       }
 
       <div className="Duck-Container">
-        { showDuck ? <img src={duck} className="Duck-Img" /> : null }
+        { showDuck ? <img src={duck} alt="could not load duck" className="Duck-Img" /> : null }
       </div>
     </div>
   )
