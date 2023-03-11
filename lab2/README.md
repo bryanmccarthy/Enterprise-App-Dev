@@ -1,5 +1,7 @@
 ## C19749651 Enterprise Application Development Lab 2
 
+<br />
+
 ### Instructions to run:
 
 Start the Node server: cd into `C19749651-lab2/lab-2-frontend` then run `node server.js`
@@ -8,7 +10,8 @@ Start the React Web App: cd into `C19749651-lab2/lab-2-frontend` then run `npm s
 
 The app will run on `http://localhost:3000/`
 
-
+<br />
+<br />
 
 Functionality:
 
