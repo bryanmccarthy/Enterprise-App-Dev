@@ -1,7 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 8080;
 const fs = require('fs');
+
+app.use(cors());
 
 // GET /colors
 app.get('/colors', (req, res) => {

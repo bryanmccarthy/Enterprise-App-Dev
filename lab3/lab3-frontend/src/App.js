@@ -1,21 +1,19 @@
 import './App.css';
+import axios from 'axios';
+
+const URL = 'http://localhost:8080';
 
 function App() {
+  async function getColors() {
+    const colors = await axios.get(URL + '/colors');
+    console.log(colors);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <button onClick={getColors}>Get Colors</button>
+
     </div>
   );
 }
