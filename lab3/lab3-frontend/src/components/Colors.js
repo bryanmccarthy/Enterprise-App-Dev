@@ -1,3 +1,4 @@
+import './Colors.scss';
 import axios from "axios";
 import { useState } from "react";
 import { useQuery } from "react-query";
@@ -7,10 +8,20 @@ const URL = "http://localhost:8080";
 function Colors() {
   const [colors, setColors] = useState([]);
   const [currIndex, setCurrIndex] = useState(0);
+  const [colorId, setColorId] = useState(0);
+  const [hexString, setHexString] = useState("");
+  const [rgb, setRgb] = useState({ r: 0, g: 0, b: 0 });
+  const [hsl, setHsl] = useState({ h: 0, s: 0, l: 0 });
+  const [name, setName] = useState("");
 
   async function getColors() {
     const colors = await axios.get(URL + '/colors');
     setColors(colors.data);
+    setColorId(colors.data[0].colorId);
+    setHexString(colors.data[0].hexString);
+    setRgb(colors.data[0].rgb);
+    setHsl(colors.data[0].hsl);
+    setName(colors.data[0].name);
   }
 
   async function createColor() {
@@ -32,41 +43,60 @@ function Colors() {
   }
 
   async function updateColor() {
-    const color = await axios.put(URL + '/colors/256', {
-      hexString: "#00FF00",
-      rgb: {
-        r: 0,
-        g: 255,
-        b: 0
-      },
-      hsl: {
-        h: 120,
-        s: 100,
-        l: 50
-      },
-      name: "Green"
+    const id = colors[currIndex].colorId;
+
+    const res = await axios.put(URL + `/colors/:${id}`, {
+      hexString: hexString,
+      rgb: rgb,
+      hsl: hsl,
+      name: name
     });
-    console.log(color);
+    
+    if (res.status === 200) {
+      setColors(colors.map((color) => color.colorId === id ? res.data : color));
+    } else {
+      console.log(res);
+    }
   }
 
   async function deleteColor() {
-    const color = await axios.delete(URL + '/colors/256');
-    console.log(color);
+    const id = colors[currIndex].colorId;
+    console.log(id);
+    console.log(colors[currIndex].name)
+
+    const res = await axios.delete(URL + `/colors/${id}`);
+
+    if (res.status === 200) {
+      setColors(colors.filter((color) => color.colorId !== id));
+      if(currIndex !== 0) {
+        setCurrIndex(currIndex - 1)
+      } else {
+        setCurrIndex(0);
+      }
+    } else {
+      console.log(res);
+    }
   }
 
   function setPrevPage() {
     if (currIndex > 0) {
       setCurrIndex(currIndex - 1);
-    } else {
-      setCurrIndex(colors.length - 1);
+      setColorId(colors[currIndex - 1].colorId);
+      setHexString(colors[currIndex - 1].hexString);
+      setRgb(colors[currIndex - 1].rgb);
+      setHsl(colors[currIndex - 1].hsl);
+      setName(colors[currIndex - 1].name);
     }
   }
 
   function setNextPage() {
     if (currIndex < colors.length - 1) {
       setCurrIndex(currIndex + 1);
-    } else {
-      setCurrIndex(0);
+      setColorId(colors[currIndex + 1].colorId);
+      setHexString(colors[currIndex + 1].hexString);
+      setRgb(colors[currIndex + 1].rgb);
+      setHsl(colors[currIndex + 1].hsl);
+      setName(colors[currIndex + 1].name);
     }
   }
 
@@ -86,37 +116,26 @@ function Colors() {
       </div>
 
       <div className="ColorList">
-        {
-          colors.map((color, index) => {
-            if (index === currIndex) {
-              return (
-                <div className="Color" key={color.colorId}>
-                  <div className="ColorId">{color.colorId}</div>
-                  <div className="HexString">{color.hexString}</div>
-                  <div className="RGB">
-                    <div className="R">{color.rgb.r}</div>
-                    <div className="G">{color.rgb.g}</div>
-                    <div className="B">{color.rgb.b}</div>
-                  </div>
-                  <div className="HSL">
-                    <div className="H">{color.hsl.h}</div>
-                    <div className="S">{color.hsl.s}</div>
-                    <div className="L">{color.hsl.l}</div>
-                  </div>
-                  <div className="Name">{color.name}</div>
-                </div>
-              );
-            } else {
-              return null;
-            }
-          }
-          )
-        }
+        <div className="Color">
+          <label>ID: {colorId}</label>
+          <label>hexString</label><input value={hexString} onChange={(e) => setHexString(e.target.value)}></input>
+          <div className="RGB">
+            <label>R</label><input value={rgb.r} onChange={(e) => setRgb({...rgb, r: e.target.value})}></input>
+            <label>G</label><input value={rgb.g} onChange={(e) => setRgb({...rgb, g: e.target.value})}></input>
+            <label>B</label><input value={rgb.b} onChange={(e) => setRgb({...rgb, b: e.target.value})}></input>
+          </div>
+          <div className="HSL">
+            <label>H</label><input value={hsl.h} onChange={(e) => setHsl({...hsl, h: e.target.value})}></input>
+            <label>S</label><input value={hsl.s} onChange={(e) => setHsl({...hsl, s: e.target.value})}></input>
+            <label>L</label><input value={hsl.l} onChange={(e) => setHsl({...hsl, l: e.target.value})}></input>
+          </div>
+          <label>name</label><input value={name} onChange={(e) => setName(e.target.value)}></input>
+        </div>
       </div>
 
       <div className="Pagination">
-        <button onClick={setPrevPage}>Previous</button>
-        <button onClick={setNextPage}>Next</button>
+        <button disabled={currIndex === 0 ? true : false} onClick={setPrevPage}>Prev</button>
+        <button disabled={currIndex === colors.length - 1 ? true : false} onClick={setNextPage}>Next</button>
       </div>
     </div>
   );

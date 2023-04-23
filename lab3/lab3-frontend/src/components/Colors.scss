@@ -1,0 +1,28 @@
+.Colors {
+
+  .Options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Color {
+    display: flex;
+    flex-direction: column;
+  }
+
+  button {
+    margin: 0 10px;
+    padding: 5px 10px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    background-color: #fff;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+
+}
