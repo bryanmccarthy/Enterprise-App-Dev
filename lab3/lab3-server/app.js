@@ -42,8 +42,10 @@ app.post('/colors', (req, res) => {
       res.status(500).send('Server error');
     } else {
       const colors = JSON.parse(data);
+      const colorIds = colors.map((color) => color.colorId);
+      const id = Math.max(...colorIds) + 1;
       const color = {
-        colorId: colors.length,
+        colorId: id,
         hexString: req.body.hexString,
         rgb: req.body.rgb,
         hsl: req.body.hsl,
