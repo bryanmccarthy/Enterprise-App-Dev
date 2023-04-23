@@ -88,6 +88,31 @@ app.put('/colors/:colorId', (req, res) => {
   });
 });
 
+// DELETE /colors/:colorId
+app.delete('/colors/:colorId', (req, res) => {
+  fs.readFile('colors.json', (err, data) => {
+    if (err) {
+      res.status(500).send('Server error');
+    } else {
+      const colors = JSON.parse(data);
+      const color = colors.find((color) => color.colorId === parseInt(req.params.colorId));
+      if (color) {
+        const index = colors.indexOf(color);
+        colors.splice(index, 1);
+        fs.writeFile('colors.json', JSON.stringify(colors), (err) => {
+          if (err) {
+            res.status(500).send('Server error');
+          } else {
+            res.send(color);
+          }
+        });
+      } else {
+        res.status(404).send('Color not found');
+      }
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });

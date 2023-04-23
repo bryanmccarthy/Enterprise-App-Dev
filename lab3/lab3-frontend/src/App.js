@@ -45,12 +45,18 @@ function App() {
     console.log(color);
   }
 
+  async function deleteColor() {
+    const color = await axios.delete(URL + '/colors/256');
+    console.log(color);
+  }
+
   return (
     <div className="App">
 
       <button onClick={getColors}>Get Colors</button>
       <button onClick={createColor}>Create Color</button>
       <button onClick={updateColor}>Update Color</button>
+      <button onClick={deleteColor}>Delete Color</button>
 
     </div>
   );
