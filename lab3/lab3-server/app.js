@@ -5,6 +5,7 @@ const port = 8080;
 const fs = require('fs');
 
 app.use(cors());
+app.use(express.json());
 
 // GET /colors
 app.get('/colors', (req, res) => {
@@ -30,6 +31,32 @@ app.get('/colors/:colorId', (req, res) => {
       } else {
         res.status(404).send('Color not found');
       }
+    }
+  });
+});
+
+// POST /colors
+app.post('/colors', (req, res) => {
+  fs.readFile('colors.json', (err, data) => {
+    if (err) {
+      res.status(500).send('Server error');
+    } else {
+      const colors = JSON.parse(data);
+      const color = {
+        colorId: colors.length,
+        hexString: req.body.hexString,
+        rgb: req.body.rgb,
+        hsl: req.body.hsl,
+        name: req.body.name
+      };
+      colors.push(color);
+      fs.writeFile('colors.json', JSON.stringify(colors), (err) => {
+        if (err) {
+          res.status(500).send('Server error');
+        } else {
+          res.send(color);
+        }
+      });
     }
   });
 });
