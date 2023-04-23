@@ -27,11 +27,30 @@ function App() {
     console.log(color);
   }
 
+  async function updateColor() {
+    const color = await axios.put(URL + '/colors/256', {
+      hexString: "#00FF00",
+      rgb: {
+        r: 0,
+        g: 255,
+        b: 0
+      },
+      hsl: {
+        h: 120,
+        s: 100,
+        l: 50
+      },
+      name: "Green"
+    });
+    console.log(color);
+  }
+
   return (
     <div className="App">
 
       <button onClick={getColors}>Get Colors</button>
       <button onClick={createColor}>Create Color</button>
+      <button onClick={updateColor}>Update Color</button>
 
     </div>
   );

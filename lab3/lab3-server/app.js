@@ -61,6 +61,33 @@ app.post('/colors', (req, res) => {
   });
 });
 
+// PUT /colors/:colorId
+app.put('/colors/:colorId', (req, res) => {
+  fs.readFile('colors.json', (err, data) => {
+    if (err) {
+      res.status(500).send('Server error');
+    } else {
+      const colors = JSON.parse(data);
+      const color = colors.find((color) => color.colorId === parseInt(req.params.colorId));
+      if (color) {
+        color.hexString = req.body.hexString;
+        color.rgb = req.body.rgb;
+        color.hsl = req.body.hsl;
+        color.name = req.body.name;
+        fs.writeFile('colors.json', JSON.stringify(colors), (err) => {
+          if (err) {
+            res.status(500).send('Server error');
+          } else {
+            res.send(color);
+          }
+        });
+      } else {
+        res.status(404).send('Color not found');
+      }
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
