@@ -25,7 +25,7 @@ function Colors() {
   }
 
   async function createColor() {
-    const color = await axios.post(URL + '/colors', {
+    const res = await axios.post(URL + '/colors', {
       hexString: "#FF0000",
       rgb: {
         r: 255,
@@ -39,13 +39,18 @@ function Colors() {
       },
       name: "Red"
     });
-    console.log(color);
+    
+    if (res.status === 200) {
+      setColors([...colors, res.data]);
+    } else {
+      console.log(res);
+    }
   }
 
   async function updateColor() {
-    const id = colors[currIndex].colorId;
+    const id = colorId;
 
-    const res = await axios.put(URL + `/colors/:${id}`, {
+    const res = await axios.put(URL + `/colors/${id}`, {
       hexString: hexString,
       rgb: rgb,
       hsl: hsl,
@@ -60,7 +65,7 @@ function Colors() {
   }
 
   async function deleteColor() {
-    const id = colors[currIndex].colorId;
+    const id = colorId;
     console.log(id);
     console.log(colors[currIndex].name)
 
