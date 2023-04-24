@@ -2,7 +2,7 @@
 
 ### Instructions to run:
 
-Start the Node server: <br />
+Start the Express server: <br />
 - cd into `C19749651-lab3/lab3-server`
 -  Run `node app.js`
 
