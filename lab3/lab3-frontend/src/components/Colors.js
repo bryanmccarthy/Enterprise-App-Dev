@@ -15,6 +15,9 @@ function Colors() {
   const [name, setName] = useState("");
 
   async function getColors() {
+    // Set bg color from cookie
+    const bg = document.cookie.substr(-7);
+    document.body.style.backgroundColor = bg;
     const colors = await axios.get(URL + '/colors');
     setColors(colors.data);
     setColorId(colors.data[0].colorId);
@@ -24,6 +27,7 @@ function Colors() {
     setName(colors.data[0].name);
   }
 
+  // Create a new color and set it as current
   async function createColor() {
     const res = await axios.post(URL + '/colors', {
       hexString: "#000000",
@@ -53,6 +57,7 @@ function Colors() {
     }
   }
 
+  // Update current color with values in state
   async function updateColor() {
     const id = colorId;
 
@@ -70,6 +75,7 @@ function Colors() {
     }
   }
 
+  // Delete the color and set current one to be prev
   async function deleteColor() {
     const id = colorId;
     console.log(id);
@@ -89,11 +95,14 @@ function Colors() {
     }
   }
 
+  // Set bg color and store it in cookie
   function setBackground() {
     const hex = hexString;
-    document.body.style.backgroundColor = hex; // TODO: use cookies
+    document.body.style.backgroundColor = hex;
+    document.cookie = `bg=${hex}`;
   }
 
+  // Prev pagination
   function setPrevPage() {
     if (currIndex > 0) {
       setCurrIndex(currIndex - 1);
@@ -105,6 +114,7 @@ function Colors() {
     }
   }
 
+  // Next pagination
   function setNextPage() {
     if (currIndex < colors.length - 1) {
       setCurrIndex(currIndex + 1);
@@ -116,6 +126,7 @@ function Colors() {
     }
   }
 
+  // Get the colors on load and set bg color
   const { status } = useQuery('colors', getColors);
 
   if (status === 'loading') return <div>Loading...</div>;
