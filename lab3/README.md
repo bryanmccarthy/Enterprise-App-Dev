@@ -34,3 +34,5 @@ Functionality:
 
 - [x] Store the background color as cookie to maintain it after refresh
 
+- [x] Thread created about React and Next.js
+
