@@ -1,14 +1,17 @@
-## C19749651 Enterprise Application Development Lab 2 <br />
+## C19749651 Enterprise Application Development Lab 3 <br />
 
 ### Instructions to run:
 
 Start the Node server: <br />
-- cd into `C19749651-lab2/lab-2-backend`
--  Run `node server.js`
+- cd into `C19749651-lab3/lab3-server`
+-  Run `node app.js`
+
+The server will run on `http://localhost:8080/`
+
 <br />
 
 Start the React Web App: <br />
-- In a new terminal tab cd into `C19749651-lab2/lab-2-frontend`
+- In a new terminal tab cd into `C19749651-lab3/lab3-frontend`
 - Install packages with `npm install`
 - Run `npm start` 
 
@@ -19,16 +22,15 @@ The app will run on `http://localhost:3000/`
 
 Functionality:
 
-- [x] Node.js Server containing a directory with country object files
+- [x] Express.js server with required endpoints
 
 - [x] React Frontend (using Axios) displaying content and information from the server
 
-- [x] Paragraphs explaining purpose of application
+- [x] Display colors as a paginated list (traverse through with Prev & Next)
 
-- [x] Displaying the country information in a table
-    
-- [x] table pagination & button to toggle 
-    
-- [x] Buttons to modify page elements
-    
-- [x] Change color of table cell when selected
+- [x] Buttons to Create, Delete, Update the colors
+
+- [x] Option to set current color as background
+
+- [x] Store the background color as cookie to maintain it after refresh
+
