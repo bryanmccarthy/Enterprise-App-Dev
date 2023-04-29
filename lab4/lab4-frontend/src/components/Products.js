@@ -9,12 +9,39 @@ const URL = "http://localhost:8080";
 
 function Products() {
   const [products, setProducts] = useState([]);
+
+  // Current product field states
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
+  const [discountPercentage, setDiscountPercentage] = useState(0);
+  const [rating, setRating] = useState(0);
+  const [stock, setStock] = useState(0);
+  const [brand, setBrand] = useState("");
+  const [category, setCategory] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
+  const [images, setImages] = useState([]);
+
+  // Pagination state
+  const [page, setPage] = useState(1);
   
   async function getProducts() {
     const res = await axios.get(`${URL}/products`);
     
     if (res.status === 200) {
       setProducts(res.data);
+      console.log(res.data); // TODO: remove
+
+      setTitle(res.data[0].title);
+      setDescription(res.data[0].description);
+      setPrice(res.data[0].price);
+      setDiscountPercentage(res.data[0].discountPercentage);
+      setRating(res.data[0].rating);
+      setStock(res.data[0].stock);
+      setBrand(res.data[0].brand);
+      setCategory(res.data[0].category);
+      setThumbnail(res.data[0].thumbnail);
+      setImages(res.data[0].images);
     }
   }
 
@@ -26,7 +53,27 @@ function Products() {
   return (
     <div className="Products">
       <Options />
-      <Product />
+      <Product 
+        title={title}
+        setTitle={setTitle}
+        description={description}
+        setDescription={setDescription}
+        price={price}
+        setPrice={setPrice}
+        discountPercentage={discountPercentage}
+        setDiscountPercentage={setDiscountPercentage}
+        rating={rating}
+        setRating={setRating}
+        stock={stock}
+        setStock={setStock}
+        brand={brand}
+        setBrand={setBrand}
+        category={category}
+        setCategory={setCategory}
+        thumbnail={thumbnail}
+        images={images}
+      />
+      {/* <Pagination /> */}
     </div>
   );
 }
