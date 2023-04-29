@@ -1,6 +1,7 @@
 import "./Products.css";
 import Options from "./Options";
 import Product from "./Product";
+import Pagination from "./Pagination";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { useState } from "react";
@@ -73,7 +74,7 @@ function Products() {
         thumbnail={thumbnail}
         images={images}
       />
-      {/* <Pagination /> */}
+      <Pagination page={page} setPage={setPage} totalPages={products.length} />
     </div>
   );
 }

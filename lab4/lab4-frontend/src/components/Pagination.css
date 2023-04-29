@@ -1,10 +1,9 @@
-.Options {
+.Pagination {
   display: flex;
   justify-content: center;
-  margin: 1em;
 }
 
-.Option-Button {
+.Pagination-Button {
   margin: 1em;
   padding: 0.5em;
   padding-left: 1em;
@@ -18,7 +17,7 @@
   cursor: pointer;
 }
 
-.Option-Button:hover {
+.Pagination-Button:hover {
   background-color: #000000;
   color: #ffffff;
 }
