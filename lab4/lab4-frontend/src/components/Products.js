@@ -29,6 +29,7 @@ function Products() {
 
   // Search state
   const [search, setSearch] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   
   async function getProducts() {
     const res = await axios.get(`${URL}/products`);
@@ -121,7 +122,27 @@ function Products() {
   }
 
   const searchProduct = () => {
-    console.log("searching for " + search); // TODO
+    let results = [];
+
+    products.forEach((product, idx) => {
+      if (product.title.toLowerCase().includes(search.toLowerCase())) {
+        results.push(
+          {
+            idx: idx,
+            title: product.title
+          }
+        );
+      }
+    });
+
+    setSearchResults(results);
+    setSearch("");
+  }
+
+  const handleSelectSearchItem = (idx) => {
+    handleSetProduct(idx);
+    setPage(idx);
+    setSearchResults([]);
   }
 
   const handleSetProduct = (idx) => {
@@ -145,13 +166,23 @@ function Products() {
 
   return (
     <div className="Products">
+      <h2>Products Catalogue</h2>
       <Options
         createProduct={createProduct}
         updateProduct={updateProduct}
         deleteProduct={deleteProduct}
         searchProduct={searchProduct}
         setSearch={setSearch}
+        search={search}
       />
+      <div className="Search-Results">
+        {searchResults && searchResults.map((result) => (
+          <div className="Search-Result" key={result.idx}>
+            <p>{result.title}</p>
+            <button className="Select-Button" onClick={() => handleSelectSearchItem(result.idx)}>Select</button>
+          </div>
+        ))}
+      </div>
       <Product 
         title={title}
         setTitle={setTitle}

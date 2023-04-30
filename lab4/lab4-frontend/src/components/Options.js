@@ -1,6 +1,6 @@
 import './Options.css';
 
-function Options({ createProduct, updateProduct, deleteProduct, searchProduct, setSearch }) {
+function Options({ createProduct, updateProduct, deleteProduct, searchProduct, setSearch, search }) {
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
@@ -13,7 +13,7 @@ function Options({ createProduct, updateProduct, deleteProduct, searchProduct, s
       <button className="Option-Button" onClick={deleteProduct}>Delete</button>
       <div className="Divider"></div>
       <div className="Option-Search">
-        <input className="Option-Input" type="text" placeholder="Search..." onChange={handleSearchChange} />
+        <input className="Option-Input" type="text" value={search} placeholder="Search..." onChange={handleSearchChange} />
         <button className="Option-Button" onClick={searchProduct}>Search</button>
       </div>
     </div>
