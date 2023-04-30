@@ -24,6 +24,9 @@ function Pagination({ page, setPage, totalPages, handleSetProduct }) {
         onClick={handlePrev}>
           Prev
       </button>
+      <div className="Pagination-Page">
+        {page + 1} / {totalPages}
+      </div>
       <button
         className="Pagination-Button"
         disabled={ page === totalPages ? true : false } 

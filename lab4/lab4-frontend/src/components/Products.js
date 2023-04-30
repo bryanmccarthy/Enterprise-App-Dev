@@ -50,20 +50,22 @@ function Products() {
 
   async function createProduct() {
     const res = await axios.post(`${URL}/products`, {
-      title: "New Product",
-      description: "New Product Description",
+      title: "title",
+      description: "description",
       price: 0,
       discountPercentage: 0,
       rating: 0,
       stock: 0,
-      brand: "New Product Brand",
-      category: "New Product Category",
-      thumbnail: thumbnail,
-      images: images
+      brand: "brand",
+      category: "category",
+      thumbnail: "thumbnail",
+      images: []
     });
 
     if (res.status === 200) {
-      console.log(res.data); // TODO: remove
+      setProducts([...products, res.data]);
+      handleSetProduct(products.length - 1);
+      setPage(products.length);
     }
   }
 
@@ -90,7 +92,15 @@ function Products() {
     const res = await axios.delete(`${URL}/products/${id}`);
 
     if (res.status === 200) {
-      console.log(res.data); // TODO: remove
+      setProducts(products.filter((product) => product._id !== id));
+
+      if (page > 0) {
+        handleSetProduct(page - 1);
+        setPage(page - 1);
+      } else {
+        handleSetProduct(1);
+        setPage(0);
+      }
     }
   }
 
@@ -115,7 +125,6 @@ function Products() {
 
   return (
     <div className="Products">
-      {page}
       <Options
         createProduct={createProduct}
         updateProduct={updateProduct}
