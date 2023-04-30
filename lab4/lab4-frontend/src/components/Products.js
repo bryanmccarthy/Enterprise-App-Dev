@@ -26,13 +26,15 @@ function Products() {
 
   // Pagination state
   const [page, setPage] = useState(0);
+
+  // Search state
+  const [search, setSearch] = useState("");
   
   async function getProducts() {
     const res = await axios.get(`${URL}/products`);
     
     if (res.status === 200) {
       setProducts(res.data);
-      console.log(res.data); // TODO: remove
 
       setId(res.data[0]._id);
       setTitle(res.data[0].title);
@@ -118,6 +120,10 @@ function Products() {
     }
   }
 
+  const searchProduct = () => {
+    console.log("searching for " + search); // TODO
+  }
+
   const handleSetProduct = (idx) => {
     setId(products[idx]._id);
     setTitle(products[idx].title);
@@ -143,6 +149,8 @@ function Products() {
         createProduct={createProduct}
         updateProduct={updateProduct}
         deleteProduct={deleteProduct}
+        searchProduct={searchProduct}
+        setSearch={setSearch}
       />
       <Product 
         title={title}

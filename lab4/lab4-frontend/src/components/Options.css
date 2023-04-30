@@ -1,6 +1,7 @@
 .Options {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 1em;
 }
 
@@ -21,4 +22,19 @@
 .Option-Button:hover {
   background-color: #000000;
   color: #ffffff;
+}
+
+.Option-Input {
+  margin-left: 1em;
+  height: 1.5em;
+  padding: 0.5em;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+.Divider {
+  width: 2px;
+  height: 2.5em;
+  background-color: #000000;
+  margin: 0.5em;
 }
