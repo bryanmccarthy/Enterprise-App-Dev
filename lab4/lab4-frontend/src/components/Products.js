@@ -48,6 +48,25 @@ function Products() {
     }
   }
 
+  async function updateProduct() {
+    const res = await axios.put(`${URL}/products/${id}`, {
+      title: title,
+      description: description,
+      price: price,
+      discountPercentage: discountPercentage,
+      rating: rating,
+      stock: stock,
+      brand: brand,
+      category: category,
+      thumbnail: thumbnail,
+      images: images
+    });
+
+    if (res.status === 200) {
+      console.log(res.data); // TODO: remove
+    }
+  }
+
   const handleSetProduct = (idx) => {
     setId(products[idx]._id);
     setTitle(products[idx].title);
@@ -70,7 +89,9 @@ function Products() {
   return (
     <div className="Products">
       {page}
-      <Options />
+      <Options 
+        updateProduct={updateProduct} 
+      />
       <Product 
         title={title}
         setTitle={setTitle}
