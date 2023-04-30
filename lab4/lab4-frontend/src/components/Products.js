@@ -12,6 +12,7 @@ function Products() {
   const [products, setProducts] = useState([]);
 
   // Current product field states
+  const [id, setId] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
@@ -24,7 +25,7 @@ function Products() {
   const [images, setImages] = useState([]);
 
   // Pagination state
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   
   async function getProducts() {
     const res = await axios.get(`${URL}/products`);
@@ -33,6 +34,7 @@ function Products() {
       setProducts(res.data);
       console.log(res.data); // TODO: remove
 
+      setId(res.data[0]._id);
       setTitle(res.data[0].title);
       setDescription(res.data[0].description);
       setPrice(res.data[0].price);
@@ -46,6 +48,20 @@ function Products() {
     }
   }
 
+  const handleSetProduct = (idx) => {
+    setId(products[idx]._id);
+    setTitle(products[idx].title);
+    setDescription(products[idx].description);
+    setPrice(products[idx].price);
+    setDiscountPercentage(products[idx].discountPercentage);
+    setRating(products[idx].rating);
+    setStock(products[idx].stock);
+    setBrand(products[idx].brand);
+    setCategory(products[idx].category);
+    setThumbnail(products[idx].thumbnail);
+    setImages(products[idx].images);
+  }
+
   const { isLoading, error } = useQuery("products", getProducts);
 
   if (isLoading) return "Loading...";
@@ -53,6 +69,7 @@ function Products() {
 
   return (
     <div className="Products">
+      {page}
       <Options />
       <Product 
         title={title}
@@ -74,7 +91,12 @@ function Products() {
         thumbnail={thumbnail}
         images={images}
       />
-      <Pagination page={page} setPage={setPage} totalPages={products.length} />
+      <Pagination 
+        page={page} 
+        setPage={setPage} 
+        totalPages={products.length} 
+        handleSetProduct={handleSetProduct} 
+      />
     </div>
   );
 }

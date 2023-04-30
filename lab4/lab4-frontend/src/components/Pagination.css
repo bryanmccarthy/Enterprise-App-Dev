@@ -21,3 +21,9 @@
   background-color: #000000;
   color: #ffffff;
 }
+
+.Pagination-Button:disabled {
+  background-color: #cccccc;
+  cursor: default;
+  color: #ffffff;
+}

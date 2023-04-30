@@ -1,15 +1,17 @@
 import './Pagination.css';
 
-function Pagination({ page, setPage, totalPages }) {
+function Pagination({ page, setPage, totalPages, handleSetProduct }) {
 
   const handlePrev = () => {
-    if (page > 1) {
+    if (page > 0) {
+      handleSetProduct(page - 1);
       setPage(page - 1);
     }
   }
 
   const handleNext = () => {
-    if (page < totalPages) {
+    if (page < totalPages - 1) {
+      handleSetProduct(page + 1);
       setPage(page + 1);
     }
   }
@@ -18,7 +20,7 @@ function Pagination({ page, setPage, totalPages }) {
     <div className="Pagination">
       <button 
         className="Pagination-Button" 
-        disabled={ page === 1 ? true : false } 
+        disabled={ page === 0 ? true : false } 
         onClick={handlePrev}>
           Prev
       </button>
