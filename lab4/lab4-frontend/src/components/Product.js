@@ -8,14 +8,41 @@ function Product({ title, setTitle, description, setDescription,
   return (
     <div className="Product">
       <div className="Product-Details">
-        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-        <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-        <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
-        <input type="number" value={discountPercentage} onChange={(e) => setDiscountPercentage(e.target.value)} />
-        <input type="number" value={rating} onChange={(e) => setRating(e.target.value)} />
-        <input type="number" value={stock} onChange={(e) => setStock(e.target.value)} />
-        <input type="text" value={brand} onChange={(e) => setBrand(e.target.value)} />
-        <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
+        <div className="Product-Field">
+          <label htmlFor="title">Title</label>
+          <input type="text" id="Product-Input" value={title} onChange={(e) => setTitle(e.target.value)} />
+        </div>
+        <div className="Product-Field">
+          <label htmlFor="description">Description</label>
+          <input type="text" id="Product-Input" value={description} onChange={(e) => setDescription(e.target.value)} />
+        </div>
+        <div className="Product-Field">
+          <label htmlFor="price">Price</label>
+          <input type="number" id="Product-Input" value={price} onChange={(e) => setPrice(e.target.value)} />
+        </div>
+        <div className="Product-Field">
+          <label htmlFor="discountPercentage">Discount Percentage</label>
+          <input type="number" id="Product-Input" value={discountPercentage} onChange={(e) => setDiscountPercentage(e.target.value)} />
+        </div>
+        <div className="Product-Field">
+          <label htmlFor="rating">Rating</label>
+          <input type="number" id="Product-Input" value={rating} onChange={(e) => setRating(e.target.value)} />
+        </div>
+        <div className="Product-Field">
+          <label htmlFor="stock">Stock</label>
+          <input type="number" id="Product-Input" value={stock} onChange={(e) => setStock(e.target.value)} />
+        </div>
+        <div className="Product-Field">
+          <label htmlFor="brand">Brand</label>
+          <input type="text" id="Product-Input" value={brand} onChange={(e) => setBrand(e.target.value)} />
+        </div>
+        <div className="Product-Field">
+          <label htmlFor="category">Category</label>
+          <input type="text" id="Product-Input" value={category} onChange={(e) => setCategory(e.target.value)} />
+        </div>
+        <div className="Product-Thumbnail">
+          <img id="Thumbnail" src={thumbnail} alt="thumbnail" />
+        </div>
       </div>
     </div>
   );

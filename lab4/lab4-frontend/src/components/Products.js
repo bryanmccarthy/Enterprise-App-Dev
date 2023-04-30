@@ -84,7 +84,21 @@ function Products() {
     });
 
     if (res.status === 200) {
-      console.log(res.data); // TODO: remove
+      setProducts(products.map((product) => {
+        if (product._id === id) {
+          product.title = title;
+          product.description = description;
+          product.price = price;
+          product.discountPercentage = discountPercentage;
+          product.rating = rating;
+          product.stock = stock;
+          product.brand = brand;
+          product.category = category;
+          product.thumbnail = thumbnail;
+          product.images = images;
+        }
+        return product;
+      }));
     }
   }
 

@@ -6,3 +6,32 @@
   margin-right: 2em;
   margin-left: 2em;
 }
+
+.Product-Field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+#Product-Input {
+  width: 30%;
+  padding: 0.5em;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+.Product-Thumbnail {
+  display: flex;
+  justify-content: right;
+  padding-top: 0.5em;
+}
+
+#Thumbnail {
+  width: 25em;
+  height: 20em;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
