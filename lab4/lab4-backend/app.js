@@ -39,6 +39,7 @@ app.post('/products', jsonParser, async (req, res) => {
     description: req.body.description,
     price: req.body.price,
     discountPercentage: req.body.discountPercentage,
+    rating: req.body.rating,
     stock: req.body.stock,
     brand: req.body.brand,
     category: req.body.category,
@@ -58,6 +59,7 @@ app.put('/products/:id', jsonParser, async (req, res) => {
   product.description = req.body.description;
   product.price = req.body.price;
   product.discountPercentage = req.body.discountPercentage;
+  product.rating = req.body.rating;
   product.stock = req.body.stock;
   product.brand = req.body.brand;
   product.category = req.body.category;

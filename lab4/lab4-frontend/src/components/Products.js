@@ -48,6 +48,25 @@ function Products() {
     }
   }
 
+  async function createProduct() {
+    const res = await axios.post(`${URL}/products`, {
+      title: "New Product",
+      description: "New Product Description",
+      price: 0,
+      discountPercentage: 0,
+      rating: 0,
+      stock: 0,
+      brand: "New Product Brand",
+      category: "New Product Category",
+      thumbnail: thumbnail,
+      images: images
+    });
+
+    if (res.status === 200) {
+      console.log(res.data); // TODO: remove
+    }
+  }
+
   async function updateProduct() {
     const res = await axios.put(`${URL}/products/${id}`, {
       title: title,
@@ -61,6 +80,14 @@ function Products() {
       thumbnail: thumbnail,
       images: images
     });
+
+    if (res.status === 200) {
+      console.log(res.data); // TODO: remove
+    }
+  }
+
+  async function deleteProduct() {
+    const res = await axios.delete(`${URL}/products/${id}`);
 
     if (res.status === 200) {
       console.log(res.data); // TODO: remove
@@ -89,8 +116,10 @@ function Products() {
   return (
     <div className="Products">
       {page}
-      <Options 
-        updateProduct={updateProduct} 
+      <Options
+        createProduct={createProduct}
+        updateProduct={updateProduct}
+        deleteProduct={deleteProduct}
       />
       <Product 
         title={title}
